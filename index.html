@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+<div class="wrapper">
+    <div class="slider-container">
+        <div class="slider-img-container">
+            <div class="prev-btn-container" id="prev">prev</div>
+
+            <div class="slider-img">
+            <!-- slide 1 img content -->
+                <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" class="slider-img-1">
+            <!-- slide 2 img content -->
+                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" class="slider-img-2">
+            <!-- slide 3 img content -->
+                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" class="slider-img-3">
+            </div>
+
+            <div class="next-btn-container" id="next">next</div>
+        </div>
+        <div class="slider-text-content-container">
+            <!-- slide 1 text content -->
+        <p class="slide-title">Slide 1</p>
+        <p class="slide-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero ipsum quod nesciunt rerum dolore sunt, voluptatem quas omnis. Sit mollitia recusandae veritatis quam perspiciatis est maxime expedita alias rerum tempora. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus ex aliquid reprehenderit id magnam minus nihil odit. Nostrum perferendis perspiciatis soluta dicta est ad doloribus. Deserunt sint exercitationem neque praesentium!</p>
+
+            <!-- slide 2 text content -->
+        <p class="slide-title">Slide 2</p>
+        <p class="slide-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero ipsum quod nesciunt rerum dolore sunt, voluptatem quas omnis. Sit mollitia recusandae veritatis quam perspiciatis est maxime expedita alias rerum tempora. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus ex aliquid reprehenderit id magnam minus nihil odit. Nostrum perferendis perspiciatis soluta dicta est ad doloribus. Deserunt sint exercitationem neque praesentium!</p>
+
+            <!-- slide 3 text content -->
+        <p class="slide-title">Slide 3</p>
+        <p class="slide-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero ipsum quod nesciunt rerum dolore sunt, voluptatem quas omnis. Sit mollitia recusandae veritatis quam perspiciatis est maxime expedita alias rerum tempora. Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus ex aliquid reprehenderit id magnam minus nihil odit. Nostrum perferendis perspiciatis soluta dicta est ad doloribus. Deserunt sint exercitationem neque praesentium!</p>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const prevBtn = document.getElementById('prev');
+        const nextBtn = document.getElementById('next');
+        const sliderImages = document.querySelector('.slider-img');
+        const slideTitles = document.querySelectorAll('.slide-title');
+        const slideTexts = document.querySelectorAll('.slide-text');
+    
+        let currentSlide = 0;
+    
+        function showSlide(index) {
+            // Приховати всі слайди
+            for (let i = 0; i < sliderImages.children.length; i++) {
+                
+                sliderImages.children[i].style.display = 'none';
+            }
+    
+            // Відобразити вибраний слайд
+            sliderImages.children[index].style.display = 'flex';
+    
+            // Приховати всі текстові вміст
+            slideTitles.forEach(title => title.style.display = 'none');
+            slideTexts.forEach(text => text.style.display = 'none');
+    
+            // Відобразити текстовий вміст для вибраного слайда
+            slideTitles[index].style.display = 'flex';
+            slideTexts[index].style.display = 'flex';
+        }
+    
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % sliderImages.children.length;
+            showSlide(currentSlide);
+        }
+    
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + sliderImages.children.length) % sliderImages.children.length;
+            showSlide(currentSlide);
+        }
+    
+        // Початковий відображення
+        showSlide(currentSlide);
+    
+        // Слухачі подій для кнопок
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+    });
+    </script>
+    
+    
+</body>
+</html>
